@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NarrowDSL",
+  "description": "Function call과 거의 1:1 대응. verb/target이 함수명과 유사.",
+  "type": "object",
+  "required": ["function", "args"],
+  "additionalProperties": false,
+  "properties": {
+    "function": {
+      "type": "string",
+      "enum": [
+        "control_light",
+        "set_temperature",
+        "control_appliance",
+        "set_timer",
+        "query_sensor",
+        "play_media",
+        "lock_door",
+        "set_scene"
+      ]
+    },
+    "args": {
+      "type": "object",
+      "description": "함수 인자. function 값에 따라 구조가 결정됨."
+    }
+  }
+}

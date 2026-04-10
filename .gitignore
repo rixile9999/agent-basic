@@ -4,4 +4,8 @@ __pycache__/
 *.pyc
 *.pyo
 .omc/
+.qwen/
 output.html
+unsloth_compiled_cache/
+*.json
+!package.json

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "WideDSL",
+  "description": "자연어에 가장 가까운 넓은 DSL. 동사/대상이 자유 문자열이며 의미 파싱 단계에서 함수로 매핑.",
+  "type": "object",
+  "required": ["intent", "subject"],
+  "additionalProperties": false,
+  "properties": {
+    "intent": {
+      "type": "string",
+      "description": "사용자 의도를 나타내는 짧은 동사구. 자유 문자열이되 단순하게.",
+      "maxLength": 50
+    },
+    "subject": {
+      "type": "string",
+      "description": "제어·조회 대상. 자유 문자열.",
+      "maxLength": 80
+    },
+    "location": {
+      "type": "string",
+      "description": "위치 정보. 자유 문자열.",
+      "maxLength": 40
+    },
+    "value": {
+      "description": "설정값 (숫자 또는 문자열)",
+      "oneOf": [
+        {"type": "number"},
+        {"type": "string", "maxLength": 50}
+      ]
+    },
+    "modifiers": {
+      "type": "array",
+      "description": "추가 수식어 (예: [\"빠르게\", \"조용히\", \"전부\"])",
+      "items": {"type": "string"},
+      "maxItems": 5
+    }
+  }
+}

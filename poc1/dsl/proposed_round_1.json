@@ -1,0 +1,67 @@
+{
+  "round": 1,
+  "source_results": "results_20260410_135758.json",
+  "analyzed_at": "2026-04-10T16:23:35.856928",
+  "summary": {
+    "total_failures": 6,
+    "recoverable": 5,
+    "unrecoverable": 1,
+    "new_rules_proposed": 5
+  },
+  "proposed_rules": {
+    "value_aliases": {
+      "전체": {
+        "maps_to": null,
+        "confidence": "low",
+        "occurrences": 1,
+        "evidence": [
+          "s05 / B_dsl_wide"
+        ]
+      },
+      "낮게": {
+        "maps_to": 30,
+        "confidence": "high",
+        "occurrences": 1,
+        "evidence": [
+          "c07 / B_dsl_wide"
+        ]
+      },
+      "낮춤": {
+        "maps_to": 30,
+        "confidence": "high",
+        "occurrences": 1,
+        "evidence": [
+          "m22 / B_dsl_wide"
+        ]
+      }
+    },
+    "target_aliases": {
+      "all": {
+        "maps_to": "lights",
+        "confidence": "medium",
+        "occurrences": 1,
+        "evidence": [
+          "m25 / B_dsl_medium"
+        ]
+      },
+      "volume": {
+        "maps_to": "media",
+        "confidence": "medium",
+        "occurrences": 1,
+        "evidence": [
+          "c13 / B_dsl_medium"
+        ]
+      }
+    }
+  },
+  "unresolvable": [
+    {
+      "query_id": "c16",
+      "method": "A_direct",
+      "model": "qwen-max",
+      "type": "other",
+      "error": "tool_calls 없음",
+      "dsl_output": null
+    }
+  ]
+}

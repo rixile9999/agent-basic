@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoNarrowDSL",
+  "description": "Function call과 거의 1:1 대응. function 이름이 실제 함수명과 동일.",
+  "type": "object",
+  "required": ["function", "args"],
+  "additionalProperties": false,
+  "properties": {
+    "function": {
+      "type": "string",
+      "enum": [
+        "place_order",
+        "cancel_order",
+        "get_price",
+        "get_balance",
+        "get_portfolio",
+        "set_alert",
+        "set_conditional_order",
+        "get_market_info",
+        "get_order_history"
+      ]
+    },
+    "args": {
+      "type": "object",
+      "description": "함수 인자. function 값에 따라 구조가 결정됨.",
+      "additionalProperties": true
+    }
+  }
+}

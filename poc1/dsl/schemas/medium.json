@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MediumDSL",
+  "description": "의미 동의어를 허용하는 중간 폭 DSL. verb는 자연어에 가깝고 target/params는 enum으로 제한.",
+  "type": "object",
+  "required": ["verb", "target"],
+  "additionalProperties": false,
+  "properties": {
+    "verb": {
+      "type": "string",
+      "enum": [
+        "turn_on", "turn_off", "toggle",
+        "set", "adjust", "increase", "decrease",
+        "lock", "unlock",
+        "play", "stop", "pause",
+        "check", "get", "query",
+        "activate", "start", "cancel"
+      ],
+      "description": "동작 동사 — 자연어 표현에 가까운 동의어 포함"
+    },
+    "target": {
+      "type": "string",
+      "enum": [
+        "light", "lights",
+        "temperature", "ac", "heater", "air_conditioner",
+        "tv", "washing_machine", "dishwasher", "air_purifier", "robot_vacuum",
+        "timer", "alarm",
+        "temperature_sensor", "humidity_sensor", "air_quality", "co2", "motion_sensor",
+        "music", "video", "media",
+        "door", "front_door", "back_door", "garage",
+        "scene"
+      ],
+      "description": "제어 대상 — 의미상 동의어 허용"
+    },
+    "location": {
+      "type": "string",
+      "enum": [
+        "living_room", "bedroom", "kitchen", "bathroom",
+        "outdoor", "garage", "all",
+        "거실", "침실", "부엌", "화장실", "전체"
+      ],
+      "description": "위치 — 한국어 표현도 허용"
+    },
+    "value": {
+      "description": "숫자 값 (온도, 밝기, 볼륨 등)",
+      "oneOf": [
+        {"type": "number"},
+        {"type": "string"}
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": ["on", "off", "locked", "unlocked", "true", "false"],
+      "description": "상태값 — boolean 대신 문자열로 표현"
+    },
+    "params": {
+      "type": "object",
+      "description": "추가 파라미터 (자유 형식)",
+      "additionalProperties": true
+    }
+  }
+}

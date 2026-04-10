@@ -1,0 +1,83 @@
+{
+  "_comment": "DSL 문법 확장 룰 저장소. grammar_extender.py로 관리. 수동 편집 가능.",
+  "schema_version": 1,
+  "rounds_completed": 1,
+  "rules": {
+    "value_aliases": {
+      "_comment": "value 필드에 숫자 대신 문자열이 들어온 경우. maps_to: 숫자 또는 null(무시).",
+      "_ebnf": "value ::= number | value_alias\nvalue_alias ::= <key>\nnumber ::= [0-9]+ ('.' [0-9]+)? (' ' unit)?\nunit ::= '도' | '%' | '℃'",
+      "전체": {
+        "maps_to": null,
+        "round": 1,
+        "confidence": "low",
+        "occurrences": 1
+      },
+      "낮게": {
+        "maps_to": 30,
+        "round": 1,
+        "confidence": "high",
+        "occurrences": 1
+      },
+      "낮춤": {
+        "maps_to": 30,
+        "round": 1,
+        "confidence": "high",
+        "occurrences": 1
+      }
+    },
+    "verb_aliases": {
+      "_comment": "medium DSL verb 필드에 enum 외 값이 온 경우. maps_to: enum 값.",
+      "_ebnf": "verb ::= verb_enum | verb_alias\nverb_enum ::= 'turn_on' | 'turn_off' | 'toggle' | 'set' | 'adjust' | 'increase' | 'decrease' | 'lock' | 'unlock' | 'play' | 'stop' | 'pause' | 'check' | 'get' | 'query' | 'activate' | 'start' | 'cancel'\nverb_alias ::= <key>"
+    },
+    "target_aliases": {
+      "_comment": "medium DSL target 필드에 enum 외 값이 온 경우. maps_to: enum 값.",
+      "_ebnf": "target ::= target_enum | target_alias\ntarget_enum ::= 'light' | 'lights' | 'temperature' | 'ac' | 'heater' | 'air_conditioner' | 'tv' | 'washing_machine' | 'dishwasher' | 'air_purifier' | 'robot_vacuum' | 'timer' | 'alarm' | 'temperature_sensor' | 'humidity_sensor' | 'air_quality' | 'co2' | 'motion_sensor' | 'music' | 'video' | 'media' | 'door' | 'front_door' | 'back_door' | 'garage' | 'scene'\ntarget_alias ::= <key>",
+      "all": {
+        "maps_to": "lights",
+        "round": 1,
+        "confidence": "medium",
+        "occurrences": 1
+      },
+      "volume": {
+        "maps_to": "media",
+        "round": 1,
+        "confidence": "medium",
+        "occurrences": 1
+      }
+    },
+    "location_aliases": {
+      "_comment": "location/zone/room 필드에 정규화되지 않은 위치 표현이 온 경우.",
+      "_ebnf": "location_str ::= location_canonical | location_alias\nlocation_canonical ::= 'living_room' | 'bedroom' | 'kitchen' | 'bathroom' | 'outdoor' | 'garage' | 'all'\nlocation_alias ::= <key>"
+    },
+    "state_aliases": {
+      "_comment": "state 필드에 bool 대신 비표준 문자열이 온 경우. maps_to: true | false.",
+      "_ebnf": "state_str ::= state_canonical | state_alias\nstate_canonical ::= 'on' | 'off' | 'locked' | 'unlocked' | 'true' | 'false'\nstate_alias ::= <key>"
+    },
+    "field_renames": {
+      "_comment": "모델이 잘못된 필드명을 쓴 경우. key→value로 필드명 변환.",
+      "narrow": {},
+      "medium": {
+        "_ebnf": "medium_field ::= 'verb' | 'target' | 'location' | 'value' | 'state' | 'params'\nfield_alias ::= <wrong_name> -> <correct_name>"
+      },
+      "wide": {
+        "_ebnf": "wide_field ::= 'intent' | 'subject' | 'location' | 'value' | 'modifiers'\nfield_alias ::= <wrong_name> -> <correct_name>"
+      }
+    }
+  },
+  "round_log": [
+    {
+      "round": 0,
+      "date": "2026-04-10",
+      "description": "초기 상태 — strict 파서가 기본. 실험 실행 후 grammar_extender analyze 실행.",
+      "rules_added": 0,
+      "source_results": null
+    },
+    {
+      "round": 1,
+      "date": "2026-04-10",
+      "source_results": "results_20260410_135758.json",
+      "rules_added": 5,
+      "rules_skipped": 0
+    }
+  ]
+}

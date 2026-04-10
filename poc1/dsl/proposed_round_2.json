@@ -1,0 +1,33 @@
+{
+  "round": 2,
+  "source_results": "results_20260410_163118.json",
+  "analyzed_at": "2026-04-10T16:32:58.024898",
+  "summary": {
+    "total_failures": 3,
+    "recoverable": 2,
+    "unrecoverable": 1,
+    "new_rules_proposed": 1
+  },
+  "proposed_rules": {
+    "value_aliases": {
+      "all": {
+        "maps_to": null,
+        "confidence": "low",
+        "occurrences": 1,
+        "evidence": [
+          "s05 / B_dsl_wide"
+        ]
+      }
+    }
+  },
+  "unresolvable": [
+    {
+      "query_id": "c21",
+      "method": "A_direct",
+      "model": "qwen-max",
+      "type": "other",
+      "error": "tool_calls 없음",
+      "dsl_output": null
+    }
+  ]
+}

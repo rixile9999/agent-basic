@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoMediumDSL",
+  "description": "verb 기반 중간 폭 DSL. verb → function 결정, 나머지 필드로 인자 구성.",
+  "type": "object",
+  "required": ["verb", "asset"],
+  "additionalProperties": false,
+  "properties": {
+    "verb": {
+      "type": "string",
+      "enum": [
+        "buy", "sell",
+        "cancel",
+        "get_price", "get_balance", "get_portfolio",
+        "get_history", "get_market",
+        "set_alert", "set_condition"
+      ],
+      "description": "동작. buy/sell=place_order, cancel=cancel_order, get_*=조회, set_*=설정"
+    },
+    "asset": {
+      "type": "string",
+      "description": "주요 코인 심볼 (BTC, ETH 등). 한국어 이름도 허용 (비트코인→BTC 자동 변환)."
+    },
+    "qty": {
+      "description": "주문 수량",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "price_type": {
+      "description": "주문 유형: market=시장가, limit=지정가, stop_loss=손절, take_profit=익절",
+      "oneOf": [
+        {"type": "string", "enum": ["market", "limit", "stop_loss", "take_profit"]},
+        {"type": "null"}
+      ]
+    },
+    "price": {
+      "description": "지정가/손절가 가격. market이면 null.",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "trigger_condition": {
+      "description": "조건부 주문/알림 조건: gte=이상, lte=이하, gt=초과, lt=미만",
+      "oneOf": [
+        {"type": "string", "enum": ["gte", "lte", "gt", "lt"]},
+        {"type": "null"}
+      ]
+    },
+    "trigger_price": {
+      "description": "조건부 주문/알림 기준 가격",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "action_asset": {
+      "description": "크로스애셋 조건부 주문: 실제 매수/매도할 코인 (asset과 다를 때)",
+      "oneOf": [{"type": "string"}, {"type": "null"}]
+    },
+    "action_side": {
+      "description": "조건부 주문 실행 방향",
+      "oneOf": [
+        {"type": "string", "enum": ["buy", "sell"]},
+        {"type": "null"}
+      ]
+    },
+    "action_qty": {
+      "description": "조건부 주문 실행 수량",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "order_id": {
+      "description": "취소할 주문 ID (ORD-xxx)",
+      "oneOf": [{"type": "string"}, {"type": "null"}]
+    },
+    "side_filter": {
+      "description": "취소 필터: 특정 방향(buy/sell) 주문만 취소",
+      "oneOf": [
+        {"type": "string", "enum": ["buy", "sell"]},
+        {"type": "null"}
+      ]
+    },
+    "order_type_filter": {
+      "description": "취소 필터: 특정 주문 유형만 취소",
+      "oneOf": [
+        {"type": "string", "enum": ["market", "limit", "stop_loss", "take_profit"]},
+        {"type": "null"}
+      ]
+    },
+    "limit": {
+      "description": "get_history 조회 건수",
+      "oneOf": [{"type": "integer"}, {"type": "null"}]
+    }
+  }
+}

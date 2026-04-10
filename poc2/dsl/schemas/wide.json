@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CryptoWideDSL",
+  "description": "자연어에 가장 가까운 넓은 DSL. intent 자유 문자열, 나머지 구조화.",
+  "type": "object",
+  "required": ["intent", "asset"],
+  "additionalProperties": false,
+  "properties": {
+    "intent": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "사용자 의도를 짧은 동사구로. 예: 'buy', 'sell when', 'set price alert', 'check balance'"
+    },
+    "asset": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "주요 코인 심볼 또는 한국어 이름. 조건부 주문에서는 트리거 코인."
+    },
+    "amount": {
+      "description": "주문 수량",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "price": {
+      "description": "지정가 가격. 시장가 주문이면 null.",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "trigger": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "조건부 주문/알림의 트리거 표현. 예: 'BTC >= 60000', 'ETH drops below 2500'"
+    },
+    "target_asset": {
+      "description": "크로스애셋 조건부 주문에서 실제 매수/매도할 코인",
+      "oneOf": [{"type": "string", "maxLength": 20}, {"type": "null"}]
+    },
+    "target_amount": {
+      "description": "조건부 주문 실행 수량",
+      "oneOf": [{"type": "number"}, {"type": "null"}]
+    },
+    "modifiers": {
+      "type": "array",
+      "items": {"type": "string"},
+      "maxItems": 5,
+      "description": "추가 수식어. 예: ['지정가', '전량', '즉시']"
+    }
+  }
+}
