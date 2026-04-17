@@ -28,7 +28,7 @@
     "shift_type": {
       "type": "string",
       "description": "근무 유형",
-      "enum": ["day", "evening", "night", "off"]
+      "enum": ["D", "E", "N", "OF"]
     },
     "importance": {
       "type": "integer",
@@ -37,7 +37,7 @@
     },
     "note": {
       "type": "string",
-      "description": "추가 메모",
+      "description": "추가 메모 or 중요도 5 선정에 대한 이유",
       "default": ""
     }
   }
